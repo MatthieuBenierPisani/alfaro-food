@@ -85,6 +85,8 @@
   <script src="{{ 'vendor.min.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'theme.min.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
+
+	{{ shop.metafields.loox["global_html_head"] }}
 </head>
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{% if request.page_type != blank %}{{ request.page_type | handle }}{% else %}none{% endif %} data-animations">
@@ -108,5 +110,7 @@
     <li id="a11y-refresh-page-message">{{ 'general.accessibility.refresh_page' | t }}</li>
     <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
   </ul>
+
+	{{ shop.metafields.loox["global_html_body"] }}
 </body>
 </html>

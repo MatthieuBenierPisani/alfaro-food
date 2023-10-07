@@ -6,6 +6,12 @@
 {% assign featured_media = current_variant.featured_media | default: product.featured_media %}
 
 <div class="product-template" data-section-id="{{ section.id }}" data-section-type="product-template" data-variant-id="{{ current_variant.id }}" itemscope itemtype="http://schema.org/Product">
+{% if product.metafields.loox.num_reviews %}
+	<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+		<meta itemprop="ratingValue" content="{{ product.metafields.loox.avg_rating }}"/>
+		<meta itemprop="reviewCount" content="{{ product.metafields.loox.num_reviews }}"/>
+	</div>
+{% endif %}
   <meta itemprop="name" content="{{ product.title }}">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ featured_media | img_url: 'grande' }}">
@@ -63,6 +69,7 @@
           {% endif %}
 
           <h1 class="product__title h2 text-center" itemprop="name">{{ product.title }}</h1>
+<a href="#looxReviews"><div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}" style="text-decoration: none;color: black;text-align:center;"></div></a>
           <p class="product__price text-center{% if current_variant_sale %} product__price--sale{% endif %}" data-product-price aria-live="polite">
 
             <span class="product__sale-price-label visually-hidden">{{ 'products.product.sale_price' | t }}</span>
@@ -543,3 +550,6 @@
   ]
 }
 {% endschema %}
+
+
+	<div id="looxReviews" data-product-id="{{product.id}}" class="loox-reviews-default">{{ product.metafields.loox.reviews }}</div>

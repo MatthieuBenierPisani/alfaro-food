@@ -75,6 +75,7 @@
           {% endif %}
 
           <h2 class="product__title text-center" itemprop="name">{{ title }}</h2>
+<a href="#looxReviews"><div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}" style="text-align:center;"></div></a>
 
           {% if compare_at_price > price %}
             {%- assign current_variant_sale = true -%}
